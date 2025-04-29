@@ -137,22 +137,19 @@ namespace YourNamespace.Controllers
 
                 var result = new
                 {
-                    abbreviation = offset.ToString(),
-                    client_ip = HttpContext.Connection.RemoteIpAddress?.ToString(),
-                    datetime = now.ToString("yyyy-MM-ddTHH:mm:ss.fffffffzzz"),
-                    day_of_week = (int)now.DayOfWeek,
-                    day_of_year = now.DayOfYear,
-                    dst = timeZoneInfo.IsDaylightSavingTime(now),
-                    dst_from = (string?)null,
-                    dst_offset = timeZoneInfo.IsDaylightSavingTime(now) ? offset.TotalSeconds : 0,
-                    dst_until = (string?)null,
-                    raw_offset = offset.TotalSeconds,
-                    timezone = ianaZone,
-                    unixtime = ((DateTimeOffset)now).ToUnixTimeSeconds(),
-                    utc_datetime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ"),
-                    utc_offset = offset.ToString(@"hh\:mm"),
-                    week_number = System.Globalization.CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(
-                        now, System.Globalization.CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)
+                    year = now.Year,
+                    month = now.Month,
+                    day = now.Day,
+                    hour = now.Hour,
+                    minute = now.Minute,
+                    seconds = now.Second,
+                    milliSeconds = now.Millisecond,
+                    dateTime = now.ToString("yyyy-MM-ddTHH:mm:ss.fffffff"),
+                    date = now.ToString("MM/dd/yyyy"),
+                    time = now.ToString("HH:mm"),
+                    timeZone = ianaZone,
+                    dayOfWeek = now.DayOfWeek.ToString(),
+                    dstActive = timeZoneInfo.IsDaylightSavingTime(now)
                 };
 
                 return Ok(result);
